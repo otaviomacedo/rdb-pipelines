@@ -38,7 +38,6 @@ export class Issue15711 extends Stack {
           'npx cdk synth',
         ],
       }),
-      selfMutation: false,
     });
     pipeline.addStage(new MyApplication(this, 'Prod'));
   }
