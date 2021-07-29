@@ -13,7 +13,7 @@ class MyDatabaseStack extends Stack {
         version: AuroraEngineVersion.VER_1_19_6,
       }),
       instanceProps: {
-        instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.LARGE),
+        instanceType: InstanceType.of(InstanceClass.R5, InstanceSize.XLARGE8),
         vpc: new Vpc(this, 'vpc'),
       }
     });
