@@ -1,6 +1,6 @@
 import { Construct, Stack, StackProps, Stage, StageProps } from "@aws-cdk/core";
-import * as rds from "@aws-cdk/aws-rds";
-import { CodePipeline, CodePipelineSource, ShellStep } from "@aws-cdk/pipelines";
+import * as rds from '@aws-cdk/aws-rds';
+import { CodePipeline, CodePipelineSource, ShellStep } from '@aws-cdk/pipelines';
 import { InstanceClass, InstanceSize, InstanceType, Vpc } from "@aws-cdk/aws-ec2";
 
 class MyDatabaseStack extends Stack {
@@ -10,7 +10,7 @@ class MyDatabaseStack extends Stack {
     const myCluster = new rds.DatabaseCluster(this, 'Database', {
       engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
       instanceProps: {
-        instanceType: InstanceType.of(InstanceClass.A1, InstanceSize.MICRO),
+        instanceType: InstanceType.of(InstanceClass.M4, InstanceSize.SMALL),
         vpc: new Vpc(this, 'vpc'),
       }
     });
@@ -38,6 +38,7 @@ export class Issue15711 extends Stack {
           'npx cdk synth',
         ],
       }),
+      selfMutation: false,
     });
     pipeline.addStage(new MyApplication(this, 'Prod'));
   }
