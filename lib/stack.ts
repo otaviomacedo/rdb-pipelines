@@ -8,7 +8,7 @@ class MyDatabaseStack extends Stack {
     super(scope, id, props);
 
     const myCluster = new rds.DatabaseCluster(this, 'Database', {
-      engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
+      engine: rds.DatabaseClusterEngine.AURORA_POSTGRESQL,
       instanceProps: {
         instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.LARGE),
         vpc: new Vpc(this, 'vpc'),
