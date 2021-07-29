@@ -2,13 +2,16 @@ import { Construct, Stack, StackProps, Stage, StageProps } from "@aws-cdk/core";
 import * as rds from '@aws-cdk/aws-rds';
 import { CodePipeline, CodePipelineSource, ShellStep } from '@aws-cdk/pipelines';
 import { InstanceClass, InstanceSize, InstanceType, Vpc } from "@aws-cdk/aws-ec2";
+import {AuroraMysqlEngineVersion, AuroraPostgresEngineVersion} from "@aws-cdk/aws-rds";
 
 class MyDatabaseStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const myCluster = new rds.DatabaseCluster(this, 'Database', {
-      engine: rds.DatabaseClusterEngine.AURORA_POSTGRESQL,
+      engine: rds.DatabaseClusterEngine.auroraPostgres({
+        version: AuroraPostgresEngineVersion.VER_12_6,
+      }),
       instanceProps: {
         instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.LARGE),
         vpc: new Vpc(this, 'vpc'),
