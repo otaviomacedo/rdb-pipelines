@@ -10,7 +10,7 @@ class MyDatabaseStack extends Stack {
 
     const myCluster = new rds.DatabaseCluster(this, 'Database', {
       engine: rds.DatabaseClusterEngine.auroraPostgres({
-        version: AuroraPostgresEngineVersion.VER_12_6,
+        version: AuroraPostgresEngineVersion.VER_10_6,
       }),
       instanceProps: {
         instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.LARGE),
