@@ -10,7 +10,7 @@ class MyDatabaseStack extends Stack {
     const myCluster = new rds.DatabaseCluster(this, 'Database', {
       engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
       instanceProps: {
-        instanceType: InstanceType.of(InstanceClass.M5, InstanceSize.LARGE),
+        instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.LARGE),
         vpc: new Vpc(this, 'vpc'),
       }
     });
